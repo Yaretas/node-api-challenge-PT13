@@ -44,6 +44,23 @@ routerP.get('/', (req, res) => {
         })
 })
 
+/*Read - GET*/
+routerP.get('/:id', (req, res) => {
+    const {
+        id
+    } = req.params;
+    project.getProjectActions(id)
+        .then(actions => {
+            res.status(200).json(actions);
+        })
+        .catch(err => {
+            console.log(error);
+            res.status(500).json({
+                error: "Sorry :( - The information could not be retrieved."
+            })
+        })
+})
+
 /*Update - PUT*/
 routerP.put('/:id', (req, res) => {
     const {
